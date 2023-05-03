@@ -473,8 +473,8 @@ demo_content: QUOTED_CURDIR = "$(CURDIR)"
 demo_content:
 	# fetch repo that has csv and binaries to data/samples
 	# if prod do this by default
-	[ -d "islandora_workbench" ] || (git clone https://github.com/mjordan/islandora_workbench)
-	cd islandora_workbench ; cd islandora_workbench_demo_content || git clone https://github.com/vinz3g/islandora_workbench_demo_content.git
+	[ -d "islandora_workbench" ] || (git -b hub clone https://github.com/mjordan/islandora_workbench)
+	cd islandora_workbench ; cd islandora_workbench_demo_content || git -b hub clone https://github.com/vinz3g/islandora_workbench_demo_content.git
 	$(SED_DASH_I) 's#^host.*#host: $(SITE)/#g' islandora_workbench/islandora_workbench_demo_content/example_content.yml
 	$(SED_DASH_I) 's/^password.*/password: "$(shell cat secrets/live/DRUPAL_DEFAULT_ACCOUNT_PASSWORD | sed s#/#\\\\\\\\/#g)"/g' islandora_workbench/islandora_workbench_demo_content/example_content.yml
 	cd islandora_workbench && docker build -t workbench-docker .
