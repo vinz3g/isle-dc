@@ -73,7 +73,9 @@ islandora_workbench
 #===================
 # Drupal and Mariadb files persistant storage
 *_files
-codebase*
+#codebase*
+codebase/vendor/*
+codebase/web/*
 jwt
 syn-keys
 
